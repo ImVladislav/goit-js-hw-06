@@ -15,16 +15,26 @@ refs.destroyBtn.addEventListener('click', ondestroyBoxes);
 
 function onCreateBoxes(amount) {
   box = '';
-
+  if (!boxes.childElementCount) {
     for (let i = 1; i <= refs.amountEl.value; i += 1) {
       box += `<div style="background-color: ${getRandomHexColor()}; width: ${20 + i * 10
         }px; height: ${20 + i * 10}px"></div>`;
-    }  
+    }
     boxes.insertAdjacentHTML('beforeend', box);
-}
+  } else {
 
-function ondestroyBoxes() {
+    let lastElementHeight = Number.parseInt(boxes.lastElementChild.style.height);
+    let lastElementWidth = Number.parseInt(boxes.lastElementChild.style.width);
 
-  refs.boxes.innerHTML = '';
-  refs.amountEl.value = 0;
-  };
+    for (let i = 1; i <= refs.amountEl.value; i += 1) {
+      box += `<div style="background-color: ${getRandomHexColor()}; width: ${lastElementHeight + i * 10
+        }px; height: ${lastElementWidth + i * 10}px"></div>`;
+    }
+    boxes.insertAdjacentHTML('beforeend', box);
+  }
+};
+  function ondestroyBoxes() {
+
+    refs.boxes.innerHTML = '';
+    refs.amountEl.value = 0;
+};

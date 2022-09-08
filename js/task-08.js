@@ -6,7 +6,7 @@ function onFormSubmit(event) {
     event.preventDefault();
     const formElements = event.currentTarget.elements;
 
-    const email = formElements.email.value; 
+    const email = formElements.email.value;
     const password = formElements.password.value;
 
     const formData = {
@@ -16,5 +16,10 @@ function onFormSubmit(event) {
     if (!email || !password) {
         window.alert('Че не видишь? поля не заполнены! Попробуй еще раз, только не тупи')
     }
-   event.currentTarget.reset;
+
+    console.log(formData);
+
+    if (email && password) {
+        event.currentTarget.reset();
+    }
 }
